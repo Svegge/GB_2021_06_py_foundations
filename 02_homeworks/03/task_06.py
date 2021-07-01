@@ -15,8 +15,19 @@
 
 
 def int_func(process_string):
-    process_string = process_string.capitalize()
-    return process_string
+    str_ = process_string
+    lower_latin_num_list = list(range(ord('a'), ord('z') + 1))
+    check_string_list = list(str_)
+
+    for letter in check_string_list:
+        if ord(letter) in lower_latin_num_list:
+            continue
+        else:
+            str_ = ''
+            break
+    if str_:
+        str_ = str_.capitalize()
+    return str_
 
 
 input_string = input('Please enter your string:\n>>> ')

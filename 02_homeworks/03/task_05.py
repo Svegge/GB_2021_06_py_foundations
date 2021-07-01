@@ -9,21 +9,28 @@
 '''
 
 
-def sum_numbers():
-
-    number_sum = 0
-
-    while True:
-        user_string = input(
-            'Please input number row if need stop enter "/":\n>>> ')
-        for number in user_string.split(' '):
-            if number != '/':
+def sum_numbers(number_sum, user_string):
+    stop_marker = False
+    for number in user_string.split(' '):
+        if number != '/':
+            try:
                 number_sum = number_sum + float(number)
-            else:
-                print(number_sum)
-                exit()
+            except ValueError:
+                continue
+        else:
+            result = number_sum
+            stop_marker = True
 
-        print(number_sum)
+    return number_sum, stop_marker
 
 
-sum_numbers()
+number_sum = 0
+
+while True:
+    user_string = input(
+        'Please input number row if need stop enter "/":\n>>> ')
+
+    number_sum, stop_marker = sum_numbers(number_sum, user_string)
+    print(number_sum)
+    if stop_marker:
+        break
